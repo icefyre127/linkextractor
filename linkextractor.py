@@ -1,16 +1,21 @@
 #!/usr/bin/python
+"""
+Finds all links on a html page with regular expression.
+"""
 
-import urllib2
 import re
+import urllib2
+
+matches = []
+url = "http://www.nyt.com"
 pattern = re.compile("href= *\"([^\"]+)")
 
-
-#with open("test.html") as textfile:
-#    text = textfile.read()
-
-text = urllib2.urlopen("http://www.nyt.com").read()
-
-matches = re.findall(pattern,text)
-
-for link in matches:
-    print link
+try:
+    response = urllib2.urlopen(url)
+    html = response.read()
+except:
+    print "Something, somewhere went terribly wrong."
+else:
+    matches = re.findall(pattern, html)
+    for link in matches:
+        print link
