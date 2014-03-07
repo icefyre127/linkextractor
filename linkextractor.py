@@ -13,6 +13,7 @@ pattern = re.compile("href= *\"([^\"]+)")
 try:
     response = urllib2.urlopen(url)
     html = response.read()
+    response.close()
 except:
     print "Something, somewhere went terribly wrong."
 else:
