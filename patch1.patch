@@ -1,0 +1,31 @@
+From 1a436241fd48f3e604f246a34605a700dd5227c5 Mon Sep 17 00:00:00 2001
+From: ihsan <itopaloglu83@gmail.com>
+Date: Sun, 9 Mar 2014 19:05:19 +0200
+Subject: [PATCH] ENV and Resource Management
+
+ENV yields better exportability and closing the request object frees memory when it's not needed.
+---
+ linkextractor.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/linkextractor.py b/linkextractor.py
+index 4e2d5cf..7084f19 100755
+--- a/linkextractor.py
++++ b/linkextractor.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python
+ """
+ Finds all links on a html page with regular expression.
+ """
+@@ -13,6 +13,7 @@
+ try:
+     response = urllib2.urlopen(url)
+     html = response.read()
++    response.close()
+ except:
+     print "Something, somewhere went terribly wrong."
+ else:
+-- 
+1.8.5.5
+

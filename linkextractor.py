@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 """
 Finds all links on a html page with regular expression.
 """
@@ -13,6 +13,7 @@ pattern = re.compile("href= *\"([^\"]+)")
 try:
     response = urllib2.urlopen(url)
     html = response.read()
+    response.close()
 except:
     print "Something, somewhere went terribly wrong."
 else:
